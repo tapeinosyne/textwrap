@@ -331,9 +331,7 @@ impl<'w, 'a: 'w, S: WordSplitter> Wrapper<'a, S> {
         }
     }
 
-    /// Fill a line of text at `self.width` characters. Strings are
-    /// wrapped based on their displayed width, not their size in
-    /// bytes.
+    /// Fill a line of text at `self.width` characters.
     ///
     /// The result is a string with newlines between each line. Use
     /// the `wrap` method if you need access to the individual lines.
@@ -368,9 +366,7 @@ impl<'w, 'a: 'w, S: WordSplitter> Wrapper<'a, S> {
         result
     }
 
-    /// Wrap a line of text at `self.width` characters. Strings are
-    /// wrapped based on their displayed width, not their size in
-    /// bytes.
+    /// Wrap a line of text at `self.width` characters.
     ///
     /// # Complexities
     ///
@@ -411,9 +407,7 @@ impl<'w, 'a: 'w, S: WordSplitter> Wrapper<'a, S> {
         self.wrap_iter(s).collect::<Vec<_>>()
     }
 
-    /// Lazily wrap a line of text at `self.width` characters. Strings
-    /// are wrapped based on their displayed width, not their size in
-    /// bytes.
+    /// Lazily wrap a line of text at `self.width` characters.
     ///
     /// The [`WordSplitter`] stored in [`self.splitter`] is used
     /// whenever when a word is too large to fit on the current line.
@@ -460,9 +454,7 @@ impl<'w, 'a: 'w, S: WordSplitter> Wrapper<'a, S> {
         }
     }
 
-    /// Lazily wrap a line of text at `self.width` characters. Strings
-    /// are wrapped based on their displayed width, not their size in
-    /// bytes.
+    /// Lazily wrap a line of text at `self.width` characters.
     ///
     /// The [`WordSplitter`] stored in [`self.splitter`] is used
     /// whenever when a word is too large to fit on the current line.
@@ -730,8 +722,7 @@ pub fn termwidth() -> usize {
     term_size::dimensions_stdout().map_or(80, |(w, _)| w)
 }
 
-/// Fill a line of text at `width` characters. Strings are wrapped
-/// based on their displayed width, not their size in bytes.
+/// Fill a line of text at `width` characters.
 ///
 /// The result is a string with newlines between each line. Use
 /// [`wrap`] if you need access to the individual lines or
@@ -756,8 +747,7 @@ pub fn fill(s: &str, width: usize) -> String {
     Wrapper::new(width).fill(s)
 }
 
-/// Wrap a line of text at `width` characters. Strings are wrapped
-/// based on their displayed width, not their size in bytes.
+/// Wrap a line of text at `width` characters.
 ///
 /// This function creates a Wrapper on the fly with default settings.
 /// If you need to set a language corpus for automatic hyphenation, or
@@ -788,8 +778,7 @@ pub fn wrap(s: &str, width: usize) -> Vec<Cow<str>> {
     Wrapper::new(width).wrap(s)
 }
 
-/// Lazily wrap a line of text at `width` characters. Strings are
-/// wrapped based on their displayed width, not their size in bytes.
+/// Lazily wrap a line of text at `width` characters.
 ///
 /// This function creates a Wrapper on the fly with default settings.
 /// It then calls the [`into_wrap_iter`] method. Hence, the return
